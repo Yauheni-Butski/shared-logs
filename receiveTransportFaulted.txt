@@ -1,0 +1,84 @@
+{
+  "_type": "doc",
+  "_version": 1,
+  "_score": null,
+  "_source": {
+    "b": {
+      "app": "*OUR-APP-NAME*",
+      "cluster": "aks-cluster",
+      "container_name": "*OUR-APP-NAME*",
+      "app_version": "0.0.16",
+      "env": "Production",
+    },
+    "logzio_codec": "plain",
+    "level": "Error",
+    "log": {
+      "file": {},
+      "offset": 2076556
+    },
+    "@metadata": {
+      "beat": "filebeat",
+      "type": "_doc",
+      "version": "7.9.0"
+    },
+    "message": "Receive transport faulted: sb://our-app-name.servicebus.windows.net/QueueName",
+    "type": "kubernetes",
+    "exceptions": [
+      {
+        "StackTraceString": "   at MassTransit.Azure.ServiceBus.Core.Pipeline.MessageReceiverFilter.GreenPipes.IFilter<MassTransit.Azure.ServiceBus.Core.ClientContext>.Send(ClientContext context, IPipe`1 next)\n   at MassTransit.Azure.ServiceBus.Core.Pipeline.MessageReceiverFilter.GreenPipes.IFilter<MassTransit.Azure.ServiceBus.Core.ClientContext>.Send(ClientContext context, IPipe`1 next)\n   at MassTransit.Azure.ServiceBus.Core.Pipeline.ConfigureTopologyFilter`1.Send(ClientContext context, IPipe`1 next)\n   at GreenPipes.Agents.PipeContextSupervisor`1.GreenPipes.IPipeContextSource<TContext>.Send(IPipe`1 pipe, CancellationToken cancellationToken)\n   at GreenPipes.Agents.PipeContextSupervisor`1.GreenPipes.IPipeContextSource<TContext>.Send(IPipe`1 pipe, CancellationToken cancellationToken)\n   at GreenPipes.Agents.PipeContextSupervisor`1.GreenPipes.IPipeContextSource<TContext>.Send(IPipe`1 pipe, CancellationToken cancellationToken)\n   at MassTransit.Azure.ServiceBus.Core.Transport.ReceiveTransport.<Receiver>b__11_0()",
+        "Message": "One or more errors occurred. (One or more errors occurred. (The operation was canceled.))",
+        "HResult": -2146233088,
+        "ClassName": "System.AggregateException",
+        "RemoteStackIndex": 0,
+        "Source": "System.Private.CoreLib",
+        "Depth": 0
+      },
+      {
+        "Message": "One or more errors occurred. (The operation was canceled.)",
+        "HResult": -2146233088,
+        "ClassName": "System.AggregateException",
+        "RemoteStackIndex": 0,
+        "Depth": 1
+      },
+      {
+        "StackTraceString": "   at Microsoft.Azure.ServiceBus.Core.MessageReceiver.OnReceiveAsync(Int32 maxMessageCount, TimeSpan serverWaitTime)\n   at Microsoft.Azure.ServiceBus.Core.MessageReceiver.<>c__DisplayClass64_0.<<ReceiveAsync>b__0>d.MoveNext()\n--- End of stack trace from previous location where exception was thrown ---\n   at Microsoft.Azure.ServiceBus.RetryPolicy.RunOperation(Func`1 operation, TimeSpan operationTimeout)\n   at Microsoft.Azure.ServiceBus.RetryPolicy.RunOperation(Func`1 operation, TimeSpan operationTimeout)\n   at Microsoft.Azure.ServiceBus.Core.MessageReceiver.ReceiveAsync(Int32 maxMessageCount, TimeSpan operationTimeout)\n   at Microsoft.Azure.ServiceBus.Core.MessageReceiver.ReceiveAsync(TimeSpan operationTimeout)\n   at Microsoft.Azure.ServiceBus.MessageReceivePump.<MessagePumpTaskAsync>b__11_0()",
+        "Message": "The operation was canceled.",
+        "HResult": -2146233088,
+        "ClassName": "Microsoft.Azure.ServiceBus.ServiceBusCommunicationException",
+        "RemoteStackIndex": 0,
+        "Depth": 2,
+        "Source": "Microsoft.Azure.ServiceBus"
+      },
+      {
+        "StackTraceString": "   at Microsoft.Azure.Amqp.AsyncResult.End[TAsyncResult](IAsyncResult result)\n   at Microsoft.Azure.Amqp.ReceivingAmqpLink.EndReceiveMessages(IAsyncResult result, IEnumerable`1& messages)\n   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)\n--- End of stack trace from previous location where exception was thrown ---\n   at Microsoft.Azure.ServiceBus.Core.MessageReceiver.OnReceiveAsync(Int32 maxMessageCount, TimeSpan serverWaitTime)",
+        "Message": "The operation was canceled.",
+        "HResult": -2146233029,
+        "ClassName": "System.OperationCanceledException",
+        "RemoteStackIndex": 0,
+        "Depth": 3,
+        "Source": "System.Private.CoreLib"
+      }
+    ],
+    "tags": [
+      "beats-5015"
+    ],
+    "input": {
+      "type": "container"
+    },
+    "@timestamp": "2021-03-22T00:45:19.719Z",
+    "ecs": {
+      "version": "1.5.0"
+    },
+    "stream": "stdout",
+    "fields": {
+      "InputAddress": "sb://our-app-name.servicebus.windows.net/QueueName",
+      "SourceContext": "MassTransit"
+    },
+    "messageTemplate": "Receive transport faulted: {InputAddress}"
+  },
+  "fields": {
+    "@timestamp": [
+      "2021-03-22T00:45:19.719Z"
+    ]
+  }
+}
